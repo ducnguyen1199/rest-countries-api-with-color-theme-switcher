@@ -10,16 +10,16 @@
             <img :src="detailContry.flag" alt="flag image" width="100%" />
           </div>
           <div class="col-12 col-lg-6">
-            <h1 class="mb-4">{{ detailContry.name }}</h1>
+            <h1 class="my-4">{{ detailContry.name }}</h1>
             <div class="row">
-              <div class="col-6">
+              <div class="col-12 col-lg-6 mb-5 mb-lg-0">
                 <p><b>Native Name: </b>{{ detailContry.nativeName }}</p>
                 <p><b>Population: </b>{{ detailContry.population }}</p>
                 <p><b>Region: </b>{{ detailContry.region }}</p>
                 <p><b>Sub Region: </b>{{ detailContry.subregion }}</p>
                 <p><b>Capital: </b>{{ detailContry.capital }}</p>
               </div>
-              <div class="col-6">
+              <div class="col-12 col-lg-6 mb-5 mb-lg-0">
                 <p>
                   <b>Top Level Domain: </b
                   >{{ detailContry.topLevelDomain | arrtoString }}
