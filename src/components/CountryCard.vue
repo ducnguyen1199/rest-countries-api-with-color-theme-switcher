@@ -6,7 +6,7 @@
     @click="() => this.$router.push(`detail/${data.name}`)"
     img-top
     tag="article"
-    class="mb-4 country-card"
+    class="mb-4 country-card cursor-pointer"
   >
     <b-card-text>
       <p><b>Pobulation: </b>{{ data.population }}</p>

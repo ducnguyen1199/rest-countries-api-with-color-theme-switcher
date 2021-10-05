@@ -2,7 +2,7 @@
   <div class="filer">
     <div class="row justify-content-between py-5">
       <div class="col-6">
-        <b-input-group>
+        <b-input-group class="filter-form">
           <div class="form-control prepend">
             <i class="fa fa-search"></i>
           </div>
@@ -56,14 +56,19 @@ export default {
   border-color: var(--background-primary);
   outline: none;
   color: var(--text-secondary);
-  box-shadow: 0px 0px 10px 0px var(--color-blur);
+  box-shadow: none;
 }
 .filter-selected {
   cursor: pointer;
+  box-shadow: 0px 0px 10px 0px var(--color-blur);
 }
 .filer .prepend {
   flex: 0;
   width: initial;
   min-width: initial;
+  z-index: 9;
+}
+.filter-form {
+  box-shadow: 0px 0px 10px 0px var(--color-blur);
 }
 </style>

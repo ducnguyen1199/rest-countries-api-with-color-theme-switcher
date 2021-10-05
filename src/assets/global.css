@@ -45,3 +45,7 @@ html {
   height: 4rem;
   background-color: var(--text-secondary);
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}

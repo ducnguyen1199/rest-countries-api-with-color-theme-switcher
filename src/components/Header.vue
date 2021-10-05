@@ -2,8 +2,12 @@
   <div class="header p-2">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center">
-        <h2 @click="() => this.$router.push('/')">Where in the world?</h2>
-        <p @click="toggleTheme"><i class="fa fa-moon-o"></i> Dark Mode</p>
+        <h2 @click="() => this.$router.push('/')" class="cursor-pointer">
+          Where in the world?
+        </h2>
+        <p @click="toggleTheme" class="cursor-pointer">
+          <i class="fa fa-moon-o"></i> Dark Mode
+        </p>
       </div>
     </div>
   </div>
