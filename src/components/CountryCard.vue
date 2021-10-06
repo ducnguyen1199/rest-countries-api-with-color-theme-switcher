@@ -3,7 +3,7 @@
     :title="data.name"
     :img-src="data.flag && data.flags.png"
     :img-alt="`Image ${data.name}`"
-    @click="() => this.$router.push(`detail/${data.name}`)"
+    @click="$router.push(`detail/${data.name}`)"
     img-top
     tag="article"
     class="mb-4 country-card cursor-pointer"

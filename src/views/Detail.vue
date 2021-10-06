@@ -1,10 +1,7 @@
 <template>
   <div class="detail-page">
     <div class="container">
-      <button
-        @click="() => this.$router.go(-1)"
-        class="btn-border my-5 d-inline-block"
-      >
+      <button @click="$router.go(-1)" class="btn-border my-5 d-inline-block">
         ← Back
       </button>
       <div v-if="!isLoading">
