@@ -26,13 +26,16 @@ export default new Vuex.Store({
       try {
         const rs = await getAll();
         const { data: coutries } = rs;
-        const regions = [];
 
-        _.forEach(coutries, (item) => {
-          if (!_.some(regions, ['value', item.region])) {
-            regions.push({ value: item.region, text: item.region });
-          }
-        });
+        const regions = _.uniqBy(
+          _.compact(
+            _.map(coutries, (item) => ({
+              value: item.region,
+              text: item.region,
+            }))
+          ),
+          'value'
+        );
 
         commit('mutationCountries', { coutries, regions });
       } catch (error) {
@@ -48,7 +51,7 @@ export default new Vuex.Store({
           throw new Error('Data is Empty!');
         }
 
-        commit('mutationDetailCountry', { detailContry: data[0] });
+        commit('mutationDetailCountry', { detailContry: _.head(data) });
       } catch (error) {
         alert(getResponseErrorMessage(error));
       }

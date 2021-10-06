@@ -36,7 +36,7 @@
 <script>
 import FilterCountries from '@/components/FilterCountries.vue';
 import CountryCard from '@/components/CountryCard.vue';
-import { NUMBER_CARD_PER_PAGE } from '@/const';
+import { NUMBER_CARD_PER_PAGE } from '@/core/configs';
 import _ from 'lodash';
 export default {
   name: 'Home',
@@ -67,9 +67,10 @@ export default {
         _.includes(_.toLower(item.name), _.toLower(this.keyword))
       );
 
-      const filterByRegion = this.selected
-        ? _.filter(filterByKw, { region: this.selected })
-        : filterByKw;
+      const filterByRegion =
+        !this.selected || this.selected === 'All'
+          ? filterByKw
+          : _.filter(filterByKw, { region: this.selected });
 
       return filterByRegion;
     },
