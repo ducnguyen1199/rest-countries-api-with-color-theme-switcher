@@ -1,7 +1,7 @@
 <template>
   <b-card
     :title="data.name"
-    :img-src="data.flags.png"
+    :img-src="data.flag && data.flags.png"
     :img-alt="`Image ${data.name}`"
     @click="() => this.$router.push(`detail/${data.name}`)"
     img-top
@@ -21,20 +21,23 @@ export default {
   name: "CountryCard",
 };
 </script>
-<style scoped>
-.country-card img {
-  height: 150px;
-}
-.country-card .card-title {
-  font-size: 20px;
-}
-.country-card p {
-  margin-bottom: 0;
-}
+<style lang="scss" scoped>
 .country-card {
-  background: var(--background-primary);
-  color: var(--text-secondary);
-  box-shadow: 0px 0px 10px 0px var(--color-blur);
+  @include theme() {
+    box-shadow: 0 0 10px theme-get("color-blur");
+    background-color: theme-get("bg-primary");
+    color: theme-get("text-secondary");
+  }
+
   border: 0;
+  img {
+    height: 150px;
+  }
+  .card-title {
+    font-size: 20px;
+  }
+  p {
+    margin-bottom: 0;
+  }
 }
 </style>

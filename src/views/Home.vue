@@ -43,8 +43,8 @@ export default {
   data() {
     return {
       dataRegion: [],
-      keyword: "",
-      selected: "",
+      keyword: null,
+      selected: null,
       currentPage: 1,
       totalRrows: 0,
       isLoading: true,
@@ -60,11 +60,15 @@ export default {
   },
   computed: {
     dataFilter() {
-      return this.$store.state.coutries.filter(
-        (item) =>
-          item.name.toLowerCase().includes(this.keyword.toLowerCase()) &&
-          (item.region === this.selected || this.selected === "")
-      );
+      return this.$store.state.coutries.filter((item) => {
+        const foundByKeyword =
+          !this.keyword ||
+          item.name.toLowerCase().includes(this.keyword?.toLowerCase());
+
+        const foundByRegion = !this.selected || item.region === this.selected;
+
+        return foundByKeyword && foundByRegion;
+      });
     },
     dataRender() {
       return this.dataFilter.slice(
@@ -91,21 +95,32 @@ export default {
 };
 </script>
 
-<style>
-.home-page * {
-  font-size: 14px;
-}
-.home-page ul {
-  box-shadow: 0px 0px 10px var(--color-blur);
-}
-.home-page .page-item .page-link {
-  background-color: var(--background-primary) !important;
-  color: var(--text-info);
-}
-.home-page .page-item.active .page-link {
-  background-color: #0d6efd !important;
-}
-.home-page .nodata {
-  color: var(--text-info);
+<style lang="scss" scoped>
+.home-page {
+  @include theme() {
+    background-color: theme-get("bg-secondary");
+    min-height: 100vh;
+  }
+  font-family: "Nunito Sans", sans-serif;
+  * {
+    font-size: 14px;
+  }
+  ul {
+    box-shadow: 0 0 10px var(--color-blur);
+    &::v-deep .page-item {
+      .page-link {
+        @include theme() {
+          background-color: theme-get("bg-primary") !important;
+          color: theme-get("text-info");
+        }
+      }
+      &.active .page-link {
+        background-color: #0d6efd !important;
+      }
+    }
+  }
+  .nodata {
+    color: var(--text-info);
+  }
 }
 </style>

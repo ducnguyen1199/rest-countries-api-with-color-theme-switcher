@@ -1,0 +1,62 @@
+$themes: (
+  darkTheme: (
+    "bg-primary": hsl(209, 23%, 22%),
+    "bg-secondary": hsl(207, 26%, 17%),
+    "bg-info": hsl(200, 15%, 8%),
+    "text-primary": hsl(0, 0%, 100%),
+    "text-secondary": hsl(0, 0%, 98%),
+    "text-info": hsl(0, 0%, 52%),
+    "color-blur": #00000027,
+  ),
+  lightTheme: (
+    "bg-primary": hsl(0, 0%, 100%),
+    "bg-secondary": hsl(0, 0%, 98%),
+    "bg-info": hsl(0, 0%, 52%),
+    "text-primary": hsl(200, 15%, 8%),
+    "text-secondary": hsl(207, 26%, 17%),
+    "text-info": hsl(209, 23%, 22%),
+    "color-blur": #00000027,
+  ),
+);
+
+@mixin theme() {
+  @each $theme, $map in $themes {
+    $theme-map: $map !global;
+    .#{$theme} & {
+      @content;
+    }
+  }
+  $theme-map: null !global;
+}
+
+@function theme-get($key) {
+  @return map-get($theme-map, $key);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading span {
+  width: 4rem;
+  height: 4rem;
+  @include theme() {
+    background-color: theme-get("text-secondary");
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

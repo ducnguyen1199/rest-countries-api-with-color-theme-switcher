@@ -10,7 +10,11 @@
       <div v-if="!isLoading">
         <div class="row align-items-center">
           <div class="col-12 col-lg-6">
-            <img :src="detailContry.flag" alt="flag image" width="100%" />
+            <img
+              :src="detailContry.flag && detailContry.flags.png"
+              alt="flag image"
+              width="100%"
+            />
           </div>
           <div class="col-12 col-lg-6">
             <h1 class="my-4">{{ detailContry.name }}</h1>
@@ -40,6 +44,7 @@
             <div>
               <b>Border Countries: </b>
               <span v-if="!isLoadingBorders">
+                <span v-if="!bordersFormat.length">0</span>
                 <router-link
                   :to="`/detail/${item}`"
                   class="btn-border m-1 d-inline-block"
@@ -75,11 +80,14 @@ export default {
   async mounted() {
     this.isLoading = true;
     this.isLoadingBorders = true;
+
     this.$store.dispatch("fetchDetailCountry", {
       name: this.$router.currentRoute.params.name,
     });
-    if (this.$store.state.coutries.length === 0)
+
+    if (this.$store.state.coutries.length === 0) {
       this.$store.dispatch("fetchCountries");
+    }
   },
   computed: {
     detailContry() {
@@ -87,7 +95,7 @@ export default {
     },
     bordersFormat() {
       const borders = this.$store.state.coutries.filter((country) =>
-        this.$store.state.borders?.some(
+        this.$store.state.detailContry?.borders?.some(
           (border) => border === country.alpha3Code
         )
       );
@@ -98,11 +106,14 @@ export default {
     $route() {
       this.isLoading = true;
       this.isLoadingBorders = true;
+
       this.$store.dispatch("fetchDetailCountry", {
         name: this.$router.currentRoute.params.name,
       });
-      if (this.$store.state.coutries.length === 0)
+
+      if (this.$store.state.coutries.length === 0) {
         this.$store.dispatch("fetchCountries");
+      }
     },
     detailContry() {
       this.isLoading = false;
@@ -122,18 +133,33 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/global.scss";
 .detail-page {
-  font-size: 16px;
-  color: var(--text-secondary);
-}
-.detail-page .btn-border {
-  border: 0;
-  padding: 3px 20px;
-  border-radius: 3px;
-  text-decoration: none;
-  box-shadow: 0px 0px 10px var(--color-blur);
-  background-color: var(--background-primary);
-  color: var(--text-primary);
+  @include theme() {
+    background-color: theme-get("bg-secondary");
+  }
+  font-family: "Nunito Sans", sans-serif;
+  min-height: 100vh;
+  * {
+    font-size: 16px;
+    @include theme() {
+      color: theme-get("text-secondary");
+    }
+  }
+  h1 {
+    font-size: 30px;
+  }
+  .btn-border {
+    border: 0;
+    padding: 3px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    @include theme() {
+      box-shadow: 0 0 10px theme-get("color-blur");
+      background-color: theme-get("bg-primary");
+      color: theme-get("text-primary");
+    }
+  }
 }
 </style>

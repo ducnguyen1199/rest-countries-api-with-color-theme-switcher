@@ -6,7 +6,6 @@ import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "font-awesome/css/font-awesome.min.css";
-import "@/assets/global.css";
 import { init } from "@/services/api.service";
 
 Vue.config.productionTip = false;

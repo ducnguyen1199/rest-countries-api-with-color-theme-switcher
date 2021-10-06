@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <Header />
+  <div id="app" :class="isDarkTheme ? 'darkTheme' : 'lightTheme'">
+    <Header @toggleTheme="toggleTheme" />
     <router-view />
   </div>
 </template>
@@ -10,5 +10,22 @@ import Header from "@/components/Header.vue";
 export default {
   name: "App",
   components: { Header },
+  data() {
+    return {
+      isDarkTheme: false,
+    };
+  },
+  methods: {
+    toggleTheme: function () {
+      this.isDarkTheme = !this.isDarkTheme;
+      window.localStorage.setItem("isDarkTheme", this.isDarkTheme);
+    },
+  },
+  mounted() {
+    this.isDarkTheme = !!window.localStorage.getItem(
+      "isDarkTheme",
+      this.isDarkTheme
+    );
+  },
 };
 </script>

@@ -10,16 +10,14 @@ export default new Vuex.Store({
     coutries: [],
     regions: [],
     detailContry: {},
-    borders: [],
   },
   mutations: {
     mutationCountries(state, { coutries, regions }) {
       state.coutries = coutries;
       state.regions = regions;
     },
-    mutationDetailCountry(state, { detailContry, borders }) {
+    mutationDetailCountry(state, { detailContry }) {
       state.detailContry = detailContry;
-      state.borders = borders;
     },
   },
   actions: {
@@ -44,10 +42,14 @@ export default new Vuex.Store({
       try {
         const rs = await getDetail(name);
         const { data } = rs;
-        const detailContry = data[0];
-        const borders = data[0].borders;
 
-        commit("mutationDetailCountry", { detailContry, borders });
+        if (!data.length) {
+          throw new Error("Data is Empty!");
+        }
+
+        const detailContry = data[0];
+
+        commit("mutationDetailCountry", { detailContry });
       } catch (error) {
         alert(getResponseErrorMessage(error));
       }
