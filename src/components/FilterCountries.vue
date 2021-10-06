@@ -59,7 +59,6 @@ export default {
   .filter-selected:focus,
   .filter-selected:focus-visible {
     @include theme() {
-      box-shadow: 0 0 10px theme-get('color-blur');
       background-color: theme-get('bg-primary');
       color: theme-get('text-secondary');
       border-color: theme-get('bg-primary');
