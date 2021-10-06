@@ -26,7 +26,7 @@
             <b-form-select-option value="null" disabled hidden
               >Filter by Region</b-form-select-option
             >
-            <b-form-select-option value="All">All Region</b-form-select-option>
+            <b-form-select-option value="All">All Regions</b-form-select-option>
           </template>
         </b-form-select>
       </div>

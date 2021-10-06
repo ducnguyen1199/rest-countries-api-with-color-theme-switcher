@@ -18,7 +18,14 @@
             <div class="row">
               <div class="col-12 col-lg-6 mb-5 mb-lg-0">
                 <p><b>Native Name: </b>{{ detailContry.nativeName }}</p>
-                <p><b>Population: </b>{{ detailContry.population }}</p>
+                <p>
+                  <b>Population: </b
+                  >{{
+                    new Intl.NumberFormat('en-US').format(
+                      detailContry.population
+                    )
+                  }}
+                </p>
                 <p><b>Region: </b>{{ detailContry.region }}</p>
                 <p><b>Sub Region: </b>{{ detailContry.subregion }}</p>
                 <p><b>Capital: </b>{{ detailContry.capital }}</p>

@@ -9,7 +9,10 @@
     class="mb-4 country-card cursor-pointer"
   >
     <b-card-text>
-      <p><b>Pobulation: </b>{{ data.population }}</p>
+      <p>
+        <b>Pobulation: </b
+        >{{ new Intl.NumberFormat('en-US').format(data.population) }}
+      </p>
       <p><b>Region: </b>{{ data.region }}</p>
       <p><b>Capital: </b>{{ data.capital }}</p>
     </b-card-text>
