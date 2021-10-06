@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
+import Header from '@/components/Header.vue';
 export default {
-  name: "App",
+  name: 'App',
   components: { Header },
   data() {
     return {
@@ -16,14 +16,14 @@ export default {
     };
   },
   methods: {
-    toggleTheme: function () {
+    toggleTheme: function() {
       this.isDarkTheme = !this.isDarkTheme;
-      window.localStorage.setItem("isDarkTheme", this.isDarkTheme);
+      window.localStorage.setItem('isDarkTheme', this.isDarkTheme);
     },
   },
   mounted() {
     this.isDarkTheme = !!window.localStorage.getItem(
-      "isDarkTheme",
+      'isDarkTheme',
       this.isDarkTheme
     );
   },

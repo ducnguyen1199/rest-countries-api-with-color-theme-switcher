@@ -17,16 +17,16 @@
 </template>
 <script>
 export default {
-  props: ["data"],
-  name: "CountryCard",
+  props: ['data'],
+  name: 'CountryCard',
 };
 </script>
 <style lang="scss" scoped>
 .country-card {
   @include theme() {
-    box-shadow: 0 0 10px theme-get("color-blur");
-    background-color: theme-get("bg-primary");
-    color: theme-get("text-secondary");
+    box-shadow: 0 0 10px theme-get('color-blur');
+    background-color: theme-get('bg-primary');
+    color: theme-get('text-secondary');
   }
 
   border: 0;

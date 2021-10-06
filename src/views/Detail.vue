@@ -81,12 +81,12 @@ export default {
     this.isLoading = true;
     this.isLoadingBorders = true;
 
-    this.$store.dispatch("fetchDetailCountry", {
+    this.$store.dispatch('fetchDetailCountry', {
       name: this.$router.currentRoute.params.name,
     });
 
     if (this.$store.state.coutries.length === 0) {
-      this.$store.dispatch("fetchCountries");
+      this.$store.dispatch('fetchCountries');
     }
   },
   computed: {
@@ -107,12 +107,12 @@ export default {
       this.isLoading = true;
       this.isLoadingBorders = true;
 
-      this.$store.dispatch("fetchDetailCountry", {
+      this.$store.dispatch('fetchDetailCountry', {
         name: this.$router.currentRoute.params.name,
       });
 
       if (this.$store.state.coutries.length === 0) {
-        this.$store.dispatch("fetchCountries");
+        this.$store.dispatch('fetchCountries');
       }
     },
     detailContry() {
@@ -134,17 +134,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/global.scss";
+@import '@/assets/global.scss';
 .detail-page {
   @include theme() {
-    background-color: theme-get("bg-secondary");
+    background-color: theme-get('bg-secondary');
   }
-  font-family: "Nunito Sans", sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   min-height: 100vh;
   * {
     font-size: 16px;
     @include theme() {
-      color: theme-get("text-secondary");
+      color: theme-get('text-secondary');
     }
   }
   h1 {
@@ -156,9 +156,9 @@ export default {
     border-radius: 3px;
     text-decoration: none;
     @include theme() {
-      box-shadow: 0 0 10px theme-get("color-blur");
-      background-color: theme-get("bg-primary");
-      color: theme-get("text-primary");
+      box-shadow: 0 0 10px theme-get('color-blur');
+      background-color: theme-get('bg-primary');
+      color: theme-get('text-primary');
     }
   }
 }

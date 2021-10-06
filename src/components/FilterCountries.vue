@@ -34,8 +34,8 @@
 </template>
 <script>
 export default {
-  name: "FilterCountries",
-  props: ["regions"],
+  name: 'FilterCountries',
+  props: ['regions'],
   data() {
     return {
       keyword: null,
@@ -54,10 +54,10 @@ export default {
   .filter-selected:focus,
   .filter-selected:focus-visible {
     @include theme() {
-      box-shadow: 0 0 10px theme-get("color-blur");
-      background-color: theme-get("bg-primary");
-      color: theme-get("text-secondary");
-      border-color: theme-get("bg-primary");
+      box-shadow: 0 0 10px theme-get('color-blur');
+      background-color: theme-get('bg-primary');
+      color: theme-get('text-secondary');
+      border-color: theme-get('bg-primary');
     }
     outline: none;
     box-shadow: none;
@@ -65,7 +65,7 @@ export default {
   .filter-selected {
     cursor: pointer;
     @include theme() {
-      box-shadow: 0 0 10px theme-get("color-blur");
+      box-shadow: 0 0 10px theme-get('color-blur');
     }
   }
   .prepend {
@@ -76,7 +76,7 @@ export default {
   }
   .filter-form {
     @include theme() {
-      box-shadow: 0 0 10px theme-get("color-blur");
+      box-shadow: 0 0 10px theme-get('color-blur');
     }
   }
 }

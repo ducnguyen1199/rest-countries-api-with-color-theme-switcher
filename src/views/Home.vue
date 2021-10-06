@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import FilterCountries from "@/components/FilterCountries.vue";
-import CountryCard from "@/components/CountryCard.vue";
+import FilterCountries from '@/components/FilterCountries.vue';
+import CountryCard from '@/components/CountryCard.vue';
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: { CountryCard, FilterCountries },
   data() {
     return {
@@ -90,7 +90,7 @@ export default {
   },
   async mounted() {
     this.isLoading = true;
-    this.$store.dispatch("fetchCountries");
+    this.$store.dispatch('fetchCountries');
   },
 };
 </script>
@@ -98,10 +98,10 @@ export default {
 <style lang="scss" scoped>
 .home-page {
   @include theme() {
-    background-color: theme-get("bg-secondary");
+    background-color: theme-get('bg-secondary');
     min-height: 100vh;
   }
-  font-family: "Nunito Sans", sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   * {
     font-size: 14px;
   }
@@ -110,8 +110,8 @@ export default {
     &::v-deep .page-item {
       .page-link {
         @include theme() {
-          background-color: theme-get("bg-primary") !important;
-          color: theme-get("text-info");
+          background-color: theme-get('bg-primary') !important;
+          color: theme-get('text-info');
         }
       }
       &.active .page-link {

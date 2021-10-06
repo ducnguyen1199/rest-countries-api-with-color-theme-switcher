@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "Header",
+  name: 'Header',
 };
 </script>
 
@@ -24,14 +24,14 @@ export default {
   position: relative;
   z-index: 1;
   @include theme() {
-    box-shadow: 0 0 10px theme-get("color-blur");
-    background-color: theme-get("bg-primary");
-    color: theme-get("text-primary");
+    box-shadow: 0 0 10px theme-get('color-blur');
+    background-color: theme-get('bg-primary');
+    color: theme-get('text-primary');
   }
   p {
     margin-bottom: 0;
     @include theme() {
-      color: theme-get("text-sencondary");
+      color: theme-get('text-sencondary');
     }
   }
 }
