@@ -9,7 +9,7 @@
       <div class="loading" v-if="isLoading">
         <b-spinner type="grow" label="Loading..."></b-spinner>
       </div>
-      <div v-else-if="dataFilter.length === 0">
+      <div v-else-if="lodash.isEmpty(dataFilter)">
         <p class="nodata">No data availble</p>
       </div>
       <div class="row" v-else>
@@ -24,7 +24,7 @@
           <b-pagination
             v-model="currentPage"
             :total-rows="dataFilter.length"
-            :per-page="8"
+            :per-page="numberCardPerPage"
             aria-controls="cards"
           ></b-pagination>
         </div>
@@ -36,18 +36,21 @@
 <script>
 import FilterCountries from '@/components/FilterCountries.vue';
 import CountryCard from '@/components/CountryCard.vue';
-
+import { NUMBER_CARD_PER_PAGE } from '@/const';
+import _ from 'lodash';
 export default {
   name: 'Home',
   components: { CountryCard, FilterCountries },
   data() {
     return {
+      lodash: _,
       dataRegion: [],
       keyword: null,
       selected: null,
       currentPage: 1,
       totalRrows: 0,
       isLoading: true,
+      numberCardPerPage: NUMBER_CARD_PER_PAGE,
     };
   },
   methods: {
@@ -60,20 +63,21 @@ export default {
   },
   computed: {
     dataFilter() {
-      return this.$store.state.coutries.filter((item) => {
-        const foundByKeyword =
-          !this.keyword ||
-          item.name.toLowerCase().includes(this.keyword?.toLowerCase());
+      const filterByKw = _.filter(this.$store.state.coutries, (item) =>
+        _.includes(_.toLower(item.name), _.toLower(this.keyword))
+      );
 
-        const foundByRegion = !this.selected || item.region === this.selected;
+      const filterByRegion = this.selected
+        ? _.filter(filterByKw, { region: this.selected })
+        : filterByKw;
 
-        return foundByKeyword && foundByRegion;
-      });
+      return filterByRegion;
     },
     dataRender() {
-      return this.dataFilter.slice(
-        (this.currentPage - 1) * 8,
-        this.currentPage * 8
+      return _.slice(
+        this.dataFilter,
+        (this.currentPage - 1) * NUMBER_CARD_PER_PAGE,
+        this.currentPage * NUMBER_CARD_PER_PAGE
       );
     },
     regions() {
@@ -85,7 +89,9 @@ export default {
       this.isLoading = false;
     },
     dataFilter() {
-      this.totalRrows = Math.round(this.dataFilter.length / 8);
+      this.totalRrows = Math.round(
+        this.dataFilter.length / NUMBER_CARD_PER_PAGE
+      );
     },
   },
   async mounted() {
@@ -120,7 +126,9 @@ export default {
     }
   }
   .nodata {
-    color: var(--text-info);
+    @include theme() {
+      color: theme-get('text-info');
+    }
   }
 }
 </style>

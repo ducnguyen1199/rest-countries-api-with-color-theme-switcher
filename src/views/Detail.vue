@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 export default {
   data() {
     return {
@@ -85,7 +86,7 @@ export default {
       name: this.$router.currentRoute.params.name,
     });
 
-    if (this.$store.state.coutries.length === 0) {
+    if (_.isEmpty(this.$store.state.coutries)) {
       this.$store.dispatch('fetchCountries');
     }
   },
@@ -94,12 +95,12 @@ export default {
       return this.$store.state.detailContry;
     },
     bordersFormat() {
-      const borders = this.$store.state.coutries.filter((country) =>
-        this.$store.state.detailContry?.borders?.some(
-          (border) => border === country.alpha3Code
-        )
+      const { coutries, detailContry } = this.$store.state;
+      const borders = _.filter(coutries, (country) =>
+        _.some(detailContry.borders, (border) => border === country.alpha3Code)
       );
-      return borders.map((item) => item.name);
+
+      return _.map(borders, (item) => item.name);
     },
   },
   watch: {
@@ -111,7 +112,7 @@ export default {
         name: this.$router.currentRoute.params.name,
       });
 
-      if (this.$store.state.coutries.length === 0) {
+      if (!this.$store.state.coutries.length) {
         this.$store.dispatch('fetchCountries');
       }
     },
@@ -124,10 +125,10 @@ export default {
   },
   filters: {
     arrtoString(value) {
-      return value?.toString();
+      return _.toString(value);
     },
     arrObjToString(value) {
-      return value?.map((item) => item.name).toString();
+      return _.toString(_.map(value, (item) => item.name));
     },
   },
 };

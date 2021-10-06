@@ -1,7 +1,8 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import { getAll, getDetail } from "@/services/api.service";
-import { getResponseErrorMessage } from "@/services/utils";
+import Vue from 'vue';
+import Vuex from 'vuex';
+import { getAll, getDetail } from '@/services/api.service';
+import { getResponseErrorMessage } from '@/services/utils';
+import _ from 'lodash';
 
 Vue.use(Vuex);
 
@@ -27,13 +28,13 @@ export default new Vuex.Store({
         const { data: coutries } = rs;
         const regions = [];
 
-        coutries.forEach((item) => {
-          if (!regions.some((region) => region.value === item.region)) {
+        _.forEach(coutries, (item) => {
+          if (!_.some(regions, ['value', item.region])) {
             regions.push({ value: item.region, text: item.region });
           }
         });
 
-        commit("mutationCountries", { coutries, regions });
+        commit('mutationCountries', { coutries, regions });
       } catch (error) {
         alert(getResponseErrorMessage(error));
       }
@@ -44,12 +45,10 @@ export default new Vuex.Store({
         const { data } = rs;
 
         if (!data.length) {
-          throw new Error("Data is Empty!");
+          throw new Error('Data is Empty!');
         }
 
-        const detailContry = data[0];
-
-        commit("mutationDetailCountry", { detailContry });
+        commit('mutationDetailCountry', { detailContry: data[0] });
       } catch (error) {
         alert(getResponseErrorMessage(error));
       }

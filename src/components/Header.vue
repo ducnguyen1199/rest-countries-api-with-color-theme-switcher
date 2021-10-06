@@ -2,10 +2,10 @@
   <div class="header p-2">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center">
-        <h2 @click="() => this.$router.push('/')" class="cursor-pointer">
+        <h2 @click="$router.push('/')" class="cursor-pointer">
           Where in the world?
         </h2>
-        <p @click="() => this.$emit('toggleTheme')" class="cursor-pointer">
+        <p @click="$emit('toggleTheme')" class="cursor-pointer">
           <i class="fa fa-moon-o"></i> Dark Mode
         </p>
       </div>

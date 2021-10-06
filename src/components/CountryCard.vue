@@ -17,7 +17,12 @@
 </template>
 <script>
 export default {
-  props: ['data'],
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
   name: 'CountryCard',
 };
 </script>

@@ -10,7 +10,7 @@
             class="filter-input"
             v-model="keyword"
             placeholder="Search for a country..."
-            @input="() => this.$emit('onSearch', keyword)"
+            @input="$emit('onSearch', keyword)"
           />
         </b-input-group>
       </div>
@@ -19,7 +19,7 @@
         <b-form-select
           v-model="selected"
           :options="regions"
-          @change="() => this.$emit('onSelected', selected)"
+          @change="$emit('onSelected', selected)"
           class="form-control filter-selected"
         >
           <template #first>
@@ -35,7 +35,12 @@
 <script>
 export default {
   name: 'FilterCountries',
-  props: ['regions'],
+  props: {
+    regions: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       keyword: null,
