@@ -94,6 +94,12 @@ export default {
         this.dataFilter.length / NUMBER_CARD_PER_PAGE
       );
     },
+    currentPage() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    },
   },
   async mounted() {
     this.isLoading = true;
