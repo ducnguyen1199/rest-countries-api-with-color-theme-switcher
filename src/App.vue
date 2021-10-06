@@ -12,7 +12,7 @@ export default {
   components: { Header },
   data() {
     return {
-      isDarkTheme: false,
+      isDarkTheme: null,
     };
   },
   methods: {
@@ -22,10 +22,7 @@ export default {
     },
   },
   mounted() {
-    this.isDarkTheme = !!window.localStorage.getItem(
-      'isDarkTheme',
-      this.isDarkTheme
-    );
+    this.isDarkTheme = window.localStorage.getItem('isDarkTheme') === 'true';
   },
 };
 </script>
