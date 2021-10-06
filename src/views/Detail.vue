@@ -1,9 +1,12 @@
 <template>
   <div class="detail-page">
     <div class="container">
-      <router-link to="/" class="btn-border my-5 d-inline-block"
-        >← Back</router-link
+      <button
+        @click="() => this.$router.go(-1)"
+        class="btn-border my-5 d-inline-block"
       >
+        ← Back
+      </button>
       <div v-if="!isLoading">
         <div class="row align-items-center">
           <div class="col-12 col-lg-6">
